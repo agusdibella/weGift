@@ -100,5 +100,5 @@ do {
 alert("Gracias, lo esperamos pronto!")
 
 console.log('Ustede realizó ' + comprasRealizadas.length + ' compras')
-console.log("Sus compras realizadas fueron:") + comprasRealizadas.forEach(element =>{console.log(element)});
+console.log("Sus compras realizadas fueron:") + comprasRealizadas.forEach(compra =>{console.log(compra)});
 console.log('El total de su compra es de $' + gastoTotal.reduce((acc, gasto)=> acc+gasto,0));
