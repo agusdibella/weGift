@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+}
+
+.body {
+    background-color: #f7eae8;
+}
+
+.presentacion {
+    font-family: "Lato", sans-serif;
+    text-align: center;
+}
+
+.presentacion h2 {
+    color: #1f7387;
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.presentacion h3 {
+    color: #ceb0ab;
+    font-weight: 500;
+}
+
+.experiencia {
+    width: 100%;
+    display: grid;
+    padding: 50px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.regalos {
+    background-color: #755565;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 20px;
+    -webkit-box-shadow: 0px 0px 61px -16px rgba(117, 85, 101, 0.14);
+    -moz-box-shadow: 0px 0px 61px -16px rgba(117, 85, 101, 0.14);
+    box-shadow: 0px 0px 61px -16px rgba(117, 85, 101, 0.14);
+}
+
+.regalos img {
+    width: 100%;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.regalos h2 {
+    color: #ceb0ab;
+    font-weight: 750;
+    margin-bottom: 10px;
+}
+
+.regalos h3 {
+    color: #ceb0ab;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.regalos p {
+    color: #ffeff7;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.regalos h4 {
+    color: #ceb0ab;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.regalos div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.personas form label {
+    font-weight: 600;
+    color: #ffeff7;
+}
+
+.personas form input {
+    margin-top: 10px;
+    font-weight: 800;
+    color: #1f7387;
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    height: 30px;
+}
+
+.personas button {
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 50px;
+    font-size: 10px;
+    font-weight: 800;
+    color: #261c21;
+    border: none;
+}
+
+
+.regalos button {
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #261c21;
+    border: none;
+}
+
+.regalos button:hover {
+    background-color: #ceb0ab;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #fff8fc;
+    border: none;
+    transition: background-color 0.5s ease, color 0.5s ease
+}
+
+.carrito {
+    text-align: center;
+    background-color: #1f7387;
+    margin: 20px 50px 20px 50px;
+    border-radius: 15px;
+    color: #f1f1f1;
+    padding: 15px;
+}
+
+.pago {
+    text-align: center;
+    background-color: #ceb0ab;
+    margin: 20px 50px 20px 50px;
+    border-radius: 15px;
+    color: #f1f1f1;
+    padding: 15px;
+}
+
+.pago .botones {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.pago button {
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #261c21;
+    border: none;
+}
+
+.pago button:hover {
+    background-color: #755565;
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #fff8fc;
+    border: none;
+    transition: background-color 0.5s ease, color 0.5s ease
+}
+
+.resumen {
+    text-align: center;
+    background-color: #ceb0ab;
+    margin: 20px 50px 20px 50px;
+    border-radius: 15px;
+    color: #f1f1f1;
+    padding: 15px;
+}
+
+.fin {
+    background-color: #efb79e;
+    height: 50px;
+    text-align: center;
+    color: #f1f1f1;
+    font-weight: 200;
+    font-size: 12px;
+    padding: 10px;
+}
+
+.carrito .visto {
+    display: none;
+}
+
+.carritoVacio h2 {
+    color: brown;
+}
+
+.carritoLleno div{
+    color: #f7eae8;
+    background-color: #1f7387;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom:20px;
+    place-items: center;
+}
+
+.carritoLleno h2 {
+    font-size: 20px;
+}
+
+.carritoLleno p {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.carritoLleno .quitar {
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 5px;
+    border: none;
+    color: #871f47;
+    width: 80px;
+    height: 30px;
+
+}
+
+.carritoLleno .quitar:hover{
+background-color: #871f47;
+color: #f7eae8;
+transition: background-color 0.5s ease, color 0.5s ease
+}
+
+.total{
+    font-size: 15px;
+    color: #1f7387;
+    text-align: center;
+}
