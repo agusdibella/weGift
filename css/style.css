@@ -29,7 +29,7 @@
 .experiencia {
     width: 100%;
     display: grid;
-    padding: 50px;
+    padding: 30px;
     grid-template-columns: repeat(2, 1fr);
 }
 
@@ -143,22 +143,22 @@
     padding: 15px;
 }
 
-.pago {
+.pagoFinal {
     text-align: center;
     background-color: #ceb0ab;
-    margin: 20px 50px 20px 50px;
+    margin: 10px 50px 10px 50px;
     border-radius: 15px;
     color: #f1f1f1;
     padding: 15px;
 }
 
-.pago .botones {
+.botones {
     display: flex;
     width: 100%;
     justify-content: space-evenly;
 }
 
-.pago button {
+.pagoFinal button {
     margin-top: 10px;
     border-radius: 10px;
     padding: 10px;
@@ -170,7 +170,7 @@
     border: none;
 }
 
-.pago button:hover {
+.pagoFinal button:hover {
     background-color: #755565;
     margin-top: 10px;
     border-radius: 10px;
@@ -184,13 +184,13 @@
     transition: background-color 0.5s ease, color 0.5s ease
 }
 
-.resumen {
+.resumen div {
     text-align: center;
-    background-color: #ceb0ab;
     margin: 20px 50px 20px 50px;
     border-radius: 15px;
-    color: #f1f1f1;
+    color: #1f7387;
     padding: 15px;
+    font-size: 20px ;
 }
 
 .fin {
@@ -203,9 +203,10 @@
     padding: 10px;
 }
 
-.carrito .visto {
+.visto {
     display: none;
 }
+
 
 .carritoVacio h2 {
     color: brown;
@@ -252,4 +253,35 @@ transition: background-color 0.5s ease, color 0.5s ease
     font-size: 15px;
     color: #1f7387;
     text-align: center;
+    align-items: center;
+    margin: 5px 10px 5px 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.finalizar{
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 15px;
+    font-weight: 800;
+    background-color: #1f7387;
+    color: #f7eae8;
+    border: none;
+}
+
+.finalizar:hover{
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 15px;
+    font-weight: 800;
+    background-color: #ceb0ab;
+    color: #f7eae8;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    border: none;
 }

@@ -39,13 +39,14 @@ let eleccionExperiencias = document.querySelector("#experiencia");
 let carritoVacio = document.querySelector("#carritoVacio");
 let carritoLleno = document.querySelector("#carritoLleno");
 let totalCompra = document.querySelector("#totalCompra");
-let pago = document.querySelector("#pago");
-let resumen = document.querySelector("#resumen");
+let resumen = document.querySelector(".resumen");
 let cuotaUno = document.querySelector(".uno");
 let cuotaTres = document.querySelector(".tres");
 let cuotaSeis = document.querySelector(".seis");
 let cuotaDebito = document.querySelector(".debito");
 let valorFinal = document.querySelector("#valorFinal");
+let pagoFinal = document.querySelector(".pagoFinal");
+let final = document.querySelector(".final");
 let valorCuota
 let totalFinal
 
@@ -67,11 +68,58 @@ regalos.forEach((experiencia) => {
     boton.innerText = "Agregar por persona";
     boton.addEventListener("click", () => {
         comprasRealizadas(experiencia);
+        cuotas();
     });
 
     div.append(boton);
     eleccionExperiencias.prepend(div);
 });
+
+function cuotas() {
+    if (carritoArray.length === 0) {
+        resumen.classList.add("visto");
+    } else {
+        resumen.classList.remove("visto")
+
+        cuotaUno.addEventListener("click", function () {
+            valorCuota = totalFinal / 1;
+            valorFinal.innerText = `Usted realizo el pago en 1 cuota de: $${valorCuota.toFixed(2)}`
+        });
+
+        cuotaTres.addEventListener("click", function () {
+            valorCuota = totalFinal / 3;
+            valorFinal.innerText = `Usted realizo el pago en 3 cuotas de: $${valorCuota.toFixed(2)} cada una`
+        });
+
+        cuotaSeis.addEventListener("click", function () {
+            valorCuota = totalFinal / 6;
+            valorFinal.innerText = `Usted realizo el pago en 6 cuotas de: $${valorCuota.toFixed(2)} cada una`
+        });
+
+        cuotaDebito.addEventListener("click", function () {
+            valorCuota = totalFinal / 1;
+            valorFinal.innerText = `Usted realizo el pago en debito el total es de $${valorCuota.toFixed(2)}`
+        });
+    }
+}
+
+function finalizarCompra() {
+    if (carritoArray.length === 0) {
+        pagoFinal.classList.add("visto");        
+    } else {
+        const existingButton = final.querySelector(".finalizar");
+        if (existingButton) {
+            existingButton.remove();
+        }
+        let button = document.createElement("button");
+        button.classList.add("finalizar");
+        button.innerText = `Finalizar compra`; 
+        button.addEventListener("click", () => {
+            pagoFinal.classList.remove("visto");
+        });
+        final.append(button);
+    }
+}
 
 function verCarrito() {
     if (carritoArray.length === 0) {
@@ -103,6 +151,8 @@ function verCarrito() {
         })
     }
     total();
+    cuotas();
+    finalizarCompra();
 }
 
 function comprasRealizadas(experiencia) {
@@ -112,17 +162,18 @@ function comprasRealizadas(experiencia) {
     } else {
         carritoArray.push({ ...experiencia, cantidadPersona: 1 });
     }
-
     console.log(carritoArray);
-
     verCarrito();
+    cuotas();
+    finalizarCompra();
 }
 
 function quitarCarrito(carrito) {
     let indice = carritoArray.findIndex((producto) => producto.nombre === carrito.nombre);
     carritoArray.splice(indice, 1);
-
     verCarrito();
+    cuotas();
+    finalizarCompra();
 }
 
 function total() {
@@ -130,26 +181,3 @@ function total() {
     totalCompra.innerText = `$${totalFinal}`;
 }
 
-function cuotas(){
-    cuotaUno.addEventListener("click", function () {
-        valorCuota = totalFinal / 1;
-        valorFinal.innerText = `Usted realizo el pago en 1 cuota de: $${valorCuota.toFixed(2)}`
-    });
-    
-    cuotaTres.addEventListener("click", function () {
-        valorCuota = totalFinal / 3;
-        valorFinal.innerText = `Usted realizo el pago en 3 cuotas de: $${valorCuota.toFixed(2)} cada una`
-    });
-    
-    cuotaSeis.addEventListener("click", function () {
-        valorCuota = totalFinal / 6;
-        valorFinal.innerText = `Usted realizo el pago en 6 cuotas de: $${valorCuota.toFixed(2)} cada una`
-    });
-    
-    cuotaDebito.addEventListener("click", function () {
-        valorCuota = totalFinal / 1;
-        valorFinal.innerText = `Usted realizo el pago en debito el total es de $${valorCuota.toFixed(2)}`
-    });
-}
-
-cuotas();
