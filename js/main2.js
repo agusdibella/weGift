@@ -1,3 +1,5 @@
+let carritoArray = JSON.parse(localStorage.getItem("experiencias")) || [];
+
 let regalos = [{
     nombre: 'Cena en Rooftop en Pto Madero',
     valor: 40000,
@@ -50,7 +52,7 @@ let final = document.querySelector(".final");
 let valorCuota
 let totalFinal
 
-let carritoArray = [];
+
 
 regalos.forEach((experiencia) => {
     let div = document.createElement("div");
@@ -151,8 +153,8 @@ function verCarrito() {
         })
     }
     total();
-    cuotas();
     finalizarCompra();
+    localStorage.setItem("experiencias",JSON.stringify(carritoArray));
 }
 
 function comprasRealizadas(experiencia) {
@@ -181,3 +183,4 @@ function total() {
     totalCompra.innerText = `$${totalFinal}`;
 }
 
+verCarrito();
