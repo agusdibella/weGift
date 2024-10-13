@@ -38,8 +38,8 @@ let regalos = [{
 }]
 
 let eleccionExperiencias = document.querySelector("#experiencia");
-let carritoVacio = document.querySelector("#carritoVacio");
-let carritoLleno = document.querySelector("#carritoLleno");
+let carritoVacio = document.querySelector(".carritoVacio");
+let carritoLleno = document.querySelector(".carritoLleno");
 let totalCompra = document.querySelector("#totalCompra");
 let resumen = document.querySelector(".resumen");
 let cuotaUno = document.querySelector(".uno");
@@ -48,9 +48,11 @@ let cuotaSeis = document.querySelector(".seis");
 let cuotaDebito = document.querySelector(".debito");
 let valorFinal = document.querySelector("#valorFinal");
 let pagoFinal = document.querySelector(".pagoFinal");
+let ordenDeCompra = document.querySelector(".ordenDeCompra");
 let final = document.querySelector(".final");
 let valorCuota
 let totalFinal
+let orden = (Math.round(Math.random() * 10000))
 
 
 
@@ -60,10 +62,10 @@ regalos.forEach((experiencia) => {
     div.innerHTML =
         `<img class="imagenRegalo" src="${experiencia.imagen}">
         <h2>${experiencia.nombre}</h2>
-        <h3>$${experiencia.valor} 1 persona</h3>
+        <h3><i class="bi bi-cash"></i> $${experiencia.valor} x 1 persona</h3>
         <p>${experiencia.descripcion}</p>
-        <h4>${experiencia.direccion}</h4>
-        <h4>${experiencia.telefono}</h4>`;
+        <h4><i class="bi bi-geo-alt-fill"></i> ${experiencia.direccion}</h4>
+        <h4><i class="bi bi-telephone-fill"></i> ${experiencia.telefono}</h4>`;
 
     let boton = document.createElement("button");
     boton.classList.add("boton");
@@ -72,42 +74,213 @@ regalos.forEach((experiencia) => {
         comprasRealizadas(experiencia);
         cuotas();
     });
-
     div.append(boton);
     eleccionExperiencias.prepend(div);
 });
 
-function cuotas() {
-    if (carritoArray.length === 0) {
-        resumen.classList.add("visto");
-    } else {
-        resumen.classList.remove("visto")
+cuotaUno.addEventListener("click", function () {
+    valorCuota = totalFinal / 1;
+    Swal.fire({
+        title: "¿Desea finalizar la compra?",
+        text: `El total es de $${totalFinal}`,
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#b8c394",
+        cancelButtonColor: "#6b1c27",
+        confirmButtonText: "Continuar",
+        color: "#1f7387",
+        allowOutsideClick: "true",
+        background: "#ececece0",
+        iconColor: "#871f47",
+        denyButton: "#871f47",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let cupon = document.createElement("div");
+            cupon.classList.add("orden");
+            cupon.innerHTML =
+                `<i class="bi bi-ticket-perforated-fill"></i> <h2>Su cupón de compra es el ${orden}</h2>
+                <h3>Gracias por utilizar WeGift, Lo esperamos pronto!</h3><i class="bi bi-suit-heart-fill"></i>
+        `;
+            ordenDeCompra.append(cupon);
+            Swal.fire({
+                title: "Pago Realizado!",
+                text: `Usted realizó el pago en 1 cuota de: $${valorCuota.toFixed(2)}`,
+                iconHtml: '<i class="bi-check"></i>',
+                confirmButtonText: "Continuar",
+                color: "#1f7387",
+                allowOutsideClick: "true",
+                background: "#ececece0",
+                iconColor: "#871f47",
+                confirmButtonColor:"#b8c394"
+            });
+            Toastify({
+                text: "Se ha generado un nuevo cupón",
+                duration: 1500,
+                close: true,
+                gravity: "top", 
+                position: "right", 
+                stopOnFocus: true, 
+                style: {
+                    background: "linear-gradient(to right, #871f47, #be4b77)",
+                },
+            }).showToast();
+            ordenDeCompra.classList.remove("visto");
+        }
+    });
+});
 
-        cuotaUno.addEventListener("click", function () {
-            valorCuota = totalFinal / 1;
-            valorFinal.innerText = `Usted realizo el pago en 1 cuota de: $${valorCuota.toFixed(2)}`
-        });
+cuotaTres.addEventListener("click", function () {
+    valorCuota = totalFinal / 3;
+    Swal.fire({
+        title: "¿Desea finalizar la compra?",
+        text: `El total es de $${totalFinal}`,
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#b8c394",
+        cancelButtonColor: "#6b1c27",
+        confirmButtonText: "Continuar",
+        color: "#1f7387",
+        allowOutsideClick: "true",
+        background: "#ececece0",
+        iconColor: "#871f47",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let cupon = document.createElement("div");
+            cupon.classList.add("orden");
+            cupon.innerHTML =
+                `<i class="bi bi-ticket-perforated-fill"></i><h2> Su cupón de compra es el ${orden}</h2>
+                <h3>Gracias por utilizar WeGift, Lo esperamos pronto!</h3><i class="bi bi-suit-heart-fill"></i>
+        `;
+            ordenDeCompra.append(cupon);
+            Swal.fire({
+                title: "Pago Realizado!",
+                text: `Usted realizó el pago en 3 cuotas de: $${valorCuota.toFixed(2)}`,
+                iconHtml: '<i class="bi-check"></i>',
+                confirmButtonText: "Continuar",
+                color: "#1f7387",
+                allowOutsideClick: "true",
+                background: "#ececece0",
+                iconColor: "#871f47",
+                confirmButtonColor:"#b8c394"
+            });
+            Toastify({
+                text: "Se ha generado un nuevo cupón",
+                duration: 1500,
+                close: true,
+                gravity: "top", 
+                position: "right", 
+                stopOnFocus: true, 
+                style: {
+                    background: "linear-gradient(to right, #871f47, #be4b77)",
+                },
+            }).showToast();
+            ordenDeCompra.classList.remove("visto");
+        }
+    });
+});
 
-        cuotaTres.addEventListener("click", function () {
-            valorCuota = totalFinal / 3;
-            valorFinal.innerText = `Usted realizo el pago en 3 cuotas de: $${valorCuota.toFixed(2)} cada una`
-        });
-
-        cuotaSeis.addEventListener("click", function () {
-            valorCuota = totalFinal / 6;
-            valorFinal.innerText = `Usted realizo el pago en 6 cuotas de: $${valorCuota.toFixed(2)} cada una`
-        });
-
-        cuotaDebito.addEventListener("click", function () {
-            valorCuota = totalFinal / 1;
-            valorFinal.innerText = `Usted realizo el pago en debito el total es de $${valorCuota.toFixed(2)}`
-        });
-    }
-}
+cuotaSeis.addEventListener("click", function () {
+    valorCuota = totalFinal / 6;
+    Swal.fire({
+        title: "¿Desea finalizar la compra?",
+        text: `El total es de $${totalFinal}`,
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#b8c394",
+        cancelButtonColor: "#6b1c27",
+        confirmButtonText: "Continuar",
+        color: "#1f7387",
+        allowOutsideClick: "true",
+        background: "#ececece0",
+        iconColor: "#871f47",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let cupon = document.createElement("div");
+            cupon.classList.add("orden");
+            cupon.innerHTML =
+                `<i class="bi bi-ticket-perforated-fill"></i><h2> Su cupón de compra es el ${orden}</h2>
+                <h3>Gracias por utilizar WeGift, Lo esperamos pronto!</h3><i class="bi bi-suit-heart-fill"></i>
+        `;
+            ordenDeCompra.append(cupon);
+            Swal.fire({
+                title: "Pago Realizado!",
+                text: `Usted realizó el pago en 6 cuotas de: $${valorCuota.toFixed(2)}`,
+                iconHtml: '<i class="bi-check"></i>',
+                confirmButtonText: "Continuar",
+                color: "#1f7387",
+                allowOutsideClick: "true",
+                background: "#ececece0",
+                iconColor: "#871f47",
+                confirmButtonColor:"#b8c394"
+            });
+            Toastify({
+                text: "Se ha generado un nuevo cupón",
+                duration: 1500,
+                close: true,
+                gravity: "top", 
+                position: "right", 
+                stopOnFocus: true, 
+                style: {
+                    background: "linear-gradient(to right, #871f47, #be4b77)",
+                },
+            }).showToast();
+            ordenDeCompra.classList.remove("visto");
+        }
+    });
+});
+cuotaDebito.addEventListener("click", function () {
+    valorCuota = totalFinal / 1;
+    Swal.fire({
+        title: "¿Desea finalizar la compra?",
+        text: `El total es de $${totalFinal}`,
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#b8c394",
+        cancelButtonColor: "#6b1c27",
+        confirmButtonText: "Continuar",
+        color: "#1f7387",
+        allowOutsideClick: "true",
+        background: "#ececece0",
+        iconColor: "#871f47",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let cupon = document.createElement("div");
+            cupon.classList.add("orden");
+            cupon.innerHTML =
+                `<i class="bi bi-ticket-perforated-fill"></i><h2> Su cupón de compra es el ${orden}</h2>
+                <h3>Gracias por utilizar WeGift, Lo esperamos pronto!</h3><i class="bi bi-suit-heart-fill"></i>
+        `;
+            ordenDeCompra.append(cupon);
+            Swal.fire({
+                title: "Pago Realizado!",
+                text: `Usted realizó el pago con tarjeta de debito por un total de: $${valorCuota.toFixed(2)}`,
+                iconHtml: '<i class="bi-check"></i>',
+                confirmButtonText: "Continuar",
+                color: "#1f7387",
+                allowOutsideClick: "true",
+                background: "#ececece0",
+                iconColor: "#871f47",
+                confirmButtonColor:"#b8c394"
+            });
+            Toastify({
+                text: "Se ha generado un nuevo cupón",
+                duration: 1500,
+                close: true,
+                gravity: "top", 
+                position: "right", 
+                stopOnFocus: true, 
+                style: {
+                    background: "linear-gradient(to right, #871f47, #be4b77)",
+                },
+            }).showToast();
+            ordenDeCompra.classList.remove("visto");
+        }
+    });
+});
 
 function finalizarCompra() {
     if (carritoArray.length === 0) {
-        pagoFinal.classList.add("visto");        
+        pagoFinal.classList.add("visto");
     } else {
         const existingButton = final.querySelector(".finalizar");
         if (existingButton) {
@@ -115,7 +288,7 @@ function finalizarCompra() {
         }
         let button = document.createElement("button");
         button.classList.add("finalizar");
-        button.innerText = `Finalizar compra`; 
+        button.innerText = `Formas de pago`;
         button.addEventListener("click", () => {
             pagoFinal.classList.remove("visto");
         });
@@ -123,10 +296,20 @@ function finalizarCompra() {
     }
 }
 
+function cuotas() {
+    if (carritoArray.length === 0) {
+        resumen.classList.add("visto");
+    } else {
+        resumen.classList.remove("visto");
+    }
+}
+
+
+
 function verCarrito() {
     if (carritoArray.length === 0) {
+        carritoLleno.classList.add("visto");
         carritoVacio.classList.remove("visto");
-        carritoLleno.classList.add("visto")
     }
     else {
         carritoLleno.classList.remove("visto");
@@ -154,7 +337,7 @@ function verCarrito() {
     }
     total();
     finalizarCompra();
-    localStorage.setItem("experiencias",JSON.stringify(carritoArray));
+    localStorage.setItem("experiencias", JSON.stringify(carritoArray));
 }
 
 function comprasRealizadas(experiencia) {

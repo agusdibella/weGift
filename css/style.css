@@ -10,20 +10,18 @@
     background-color: #f7eae8;
 }
 
+.logo{
+    width: 25%;
+}
 .presentacion {
     font-family: "Lato", sans-serif;
     text-align: center;
 }
 
-.presentacion h2 {
-    color: #1f7387;
-    font-size: 50px;
-    font-weight: 700;
-}
-
 .presentacion h3 {
     color: #ceb0ab;
     font-weight: 500;
+    font-size: 25px;
 }
 
 .experiencia {
@@ -145,10 +143,9 @@
 
 .pagoFinal {
     text-align: center;
-    background-color: #ceb0ab;
     margin: 10px 50px 10px 50px;
     border-radius: 15px;
-    color: #f1f1f1;
+    color:  #871f47;
     padding: 15px;
 }
 
@@ -167,7 +164,11 @@
     font-size: 15px;
     font-weight: 800;
     color: #261c21;
-    border: none;
+    border-color: #871f47;
+}
+
+.pagoFinal h2{
+    padding: 10px;
 }
 
 .pagoFinal button:hover {
@@ -201,27 +202,52 @@
     font-weight: 200;
     font-size: 12px;
     padding: 10px;
+    margin-top: 30px;
 }
 
 .visto {
     display: none;
 }
 
+.carritoVacio{
+    color: f7eae8;
+    align-items: center;
+    justify-content: center;
+}
 
-.carritoVacio h2 {
-    color: brown;
+.bi{
+    padding-left:10px ;
+    font-size: 30px;
+}
+.bi-geo-alt-fill{
+    font-size: 20px;
+    padding-left: 0px;
+}
+
+.bi-telephone-fill{
+    font-size: 20px;
+    padding-left: 0px;
+}
+
+.bi-cash{
+    font-size: 20px;
+    padding-left: 0px;
 }
 
 .carritoLleno div{
     color: #f7eae8;
-    background-color: #1f7387;
+    background-color: #1f7387 #ecececcc;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     align-items: center;
     justify-content: space-between;
-    margin-bottom:20px;
+    margin-bottom:10px;
+    margin-top: 10px;
     place-items: center;
+    border-bottom-style: solid;
+    border-color: #ebebeb;
 }
+
 
 .carritoLleno h2 {
     font-size: 20px;
@@ -230,6 +256,8 @@
 .carritoLleno p {
     font-size: 17px;
     font-weight: 600;
+    padding: 15px;
+
 }
 
 .carritoLleno .quitar {
@@ -285,3 +313,42 @@ transition: background-color 0.5s ease, color 0.5s ease
     transition: background-color 0.5s ease, color 0.5s ease;
     border: none;
 }
+
+.ordenDeCompra {
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+    margin: 0;
+    padding: 20px;           
+    text-align: center;
+}
+
+.ordenDeCompra h4 {
+    color: #261c21;
+    display: inline-block;
+}
+
+.orden{
+    border-radius: 5px;
+    border-color: #1f7387;
+    border-style: solid;
+}
+
+.orden h2{
+    color: #1e5968;
+    padding-bottom: 5px;
+    font-size: 20px;
+}
+
+.orden h3{
+    color:#929292;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.bi-suit-heart-fill{
+    margin-top: 50px;
+    margin: 20px;
+    color: #d4769a;
+}
+

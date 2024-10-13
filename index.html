@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>We Gift</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/regalo_Mesa de trabajo 1 copia.png">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -13,20 +16,20 @@
         <h1><img src="" alt=""></h1>
     </header>
     <section class="presentacion">
-        <h2>We Gift</h2>
+        <img src="./img/logo_Mesa de trabajo 1.png" alt="Logo We Gift" class="logo">
         <h3>En WeGift el lugar perfecto para regalar experiencias unicas</h3>
     </section>
     <div class="experiencia" id="experiencia">
     </div>
     <section class="carrito" id="carrito">
-        <div class="carritoVaciovisto" id="carritoVacio">
-            <h2>Su carrito se encuentra vacio</h2>
+        <div class="carritoVacio visto" id="carritoVacio">
+            <h2>Su carrito se encuentra vacio <i class="bi bi-bag"></i> </h2>
         </div>
         <div class="carritoLleno visto" id="carritoLleno">
-
+            <h2>Carrito<i class="bi bi-bag"></i> </h2>
         </div>
     </section>
-    <section class="total" id="total">
+    <section class="total visto" id="total">
         <h2>Total <span id="totalCompra"></span></h2>
         <p class="final"></p>
     </section>
@@ -39,16 +42,19 @@
             <button class="debito">Debito</button>
         </div>
     </div>
-    <section class="resumen" id="resumen">
-        <div>
-            <h4 class="valorFinal" id="valorFinal"></h4>
+    <div class="resumen" id="resumen">
+        <div class="ordenDeCompra visto">
+            
         </div>
-    </section>
+    </div>
     <footer>
         <section class="fin">
             <h3>Di Bella, Agustina</h3>
         </section>
     </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main2.js"></script>
 </body>
 
