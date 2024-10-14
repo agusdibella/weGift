@@ -1,44 +1,33 @@
 let carritoArray = JSON.parse(localStorage.getItem("experiencias")) || [];
 
-let regalos = [{
-    nombre: 'Cena en Rooftop en Pto Madero',
-    valor: 40000,
-    descripcion: 'La opción perfecta para cortar la semana. Mediodías y noches con sabores que son una obra de arte',
-    direccion: 'Av. Elvira Rawson de Dellepiane 150',
-    telefono: ' 11 5579-9007',
-    imagen: './img/rooftop.jpg',
-    cantidadPersona: 1,
-},
-{
-    nombre: 'Merienda en Palacio Duhau de 15hs a 18hs',
-    valor: 15000,
-    descripcion: 'Exploren nuevos y audaces sabores de la mano del talentoso equipo de pastelería del Palacio.',
-    direccion: 'Av. Alvear 1661',
-    telefono: ' 11 5171-1234',
-    imagen: './img/duhau.jpg',
-    cantidadPersona: 1,
-},
-{
-    nombre: 'Almuerzo dentro del Hotel Hilton en el Faro Restaurant',
-    valor: 30000,
-    descripcion: 'Platitos al centro de temporada para compartir bajo la propuesta del chef Maxi Rossi.',
-    direccion: 'Blvd. Macacha Guemes 351',
-    telefono: ' 11 4891-0000',
-    imagen: "./img/hilton.jpg",
-    cantidadPersona: 1,
-},
-{
-    nombre: 'Cena en The Nook',
-    valor: 18000,
-    direccion: 'Av. Corrientes 802',
-    descripcion: 'Un resto-bar bohemio y chic, con una fusión de comida casera y clásicos del fast food.',
-    telefono: ' 11 5946-7865',
-    imagen: "./img/thenox.jpg",
-    cantidadPersona: 1,
-}]
+fetch("../js/exp.json")
+    .then(response => response.json())
+    .then(regalos => {
+        regalos.forEach((experiencia) => {
+            let div = document.createElement("div");
+            div.classList.add("regalos");
+            div.innerHTML =
+                `<img class="imagenRegalo" src="${experiencia.imagen}">
+        <h2>${experiencia.nombre}</h2>
+        <h3><i class="bi bi-cash"></i> $${experiencia.valor} x 1 persona</h3>
+        <p>${experiencia.descripcion}</p>
+        <h4><i class="bi bi-geo-alt-fill"></i> ${experiencia.direccion}</h4>
+        <h4><i class="bi bi-telephone-fill"></i> ${experiencia.telefono}</h4>`;
+
+            let boton = document.createElement("button");
+            boton.classList.add("boton");
+            boton.innerText = "Agregar por persona";
+            boton.addEventListener("click", () => {
+                comprasRealizadas(experiencia);
+                cuotas();
+            });
+            div.append(boton);
+            eleccionExperiencias.prepend(div);
+        });
+    })
 
 let eleccionExperiencias = document.querySelector("#experiencia");
-let carrito = document.querySelector(".carrito"); 
+let carrito = document.querySelector(".carrito");
 let carritoVacio = document.querySelector(".carritoVacio");
 let carritoLleno = document.querySelector(".carritoLleno");
 let totalCompra = document.querySelector("#totalCompra");
@@ -55,30 +44,6 @@ let valorCuota
 let totalFinal
 let orden = (Math.round(Math.random() * 10000))
 
-
-
-regalos.forEach((experiencia) => {
-    let div = document.createElement("div");
-    div.classList.add("regalos");
-    div.innerHTML =
-        `<img class="imagenRegalo" src="${experiencia.imagen}">
-        <h2>${experiencia.nombre}</h2>
-        <h3><i class="bi bi-cash"></i> $${experiencia.valor} x 1 persona</h3>
-        <p>${experiencia.descripcion}</p>
-        <h4><i class="bi bi-geo-alt-fill"></i> ${experiencia.direccion}</h4>
-        <h4><i class="bi bi-telephone-fill"></i> ${experiencia.telefono}</h4>`;
-
-    let boton = document.createElement("button");
-    boton.classList.add("boton");
-    boton.innerText = "Agregar por persona";
-    boton.addEventListener("click", () => {
-        comprasRealizadas(experiencia);
-        cuotas();
-    });
-    div.append(boton);
-    eleccionExperiencias.prepend(div);
-});
-
 function verCarrito() {
     if (carritoArray.length === 0) {
         carritoLleno.classList.add("visto");
@@ -93,12 +58,12 @@ function verCarrito() {
         vaciar.classList.add("vaciar");
         vaciar.innerText = `Vaciar carrito`;
         vaciar.addEventListener("click", () => {
-            carritoArray = []; 
-            verCarrito(); 
-            cuotas(); 
-            finalizarCompra(); 
-            localStorage.setItem("experiencias", JSON.stringify(carritoArray)); 
-            ordenDeCompra.innerHTML = ""; 
+            carritoArray = [];
+            verCarrito();
+            cuotas();
+            finalizarCompra();
+            localStorage.setItem("experiencias", JSON.stringify(carritoArray));
+            ordenDeCompra.innerHTML = "";
         });
 
         carritoArray.forEach((carrito) => {
@@ -117,7 +82,7 @@ function verCarrito() {
             });
             div.append(button);
             carritoLleno.append(div);
-         });
+        });
 
         carritoLleno.append(vaciar);
     }
@@ -141,10 +106,10 @@ function comprasRealizadas(experiencia) {
 }
 
 ordenDeCompra.innerHTML = ""
-let nuevoOrden = Math.round(Math.random() * 10000); 
+let nuevoOrden = Math.round(Math.random() * 10000);
 let cupon = document.createElement("div");
 cupon.classList.add("orden");
-cupon.innerHTML = 
+cupon.innerHTML =
     `<i class="bi bi-ticket-perforated-fill"></i> 
     <h2>Su cupón de compra es el ${nuevoOrden}</h2>
     <h3>Gracias por utilizar WeGift, ¡lo esperamos pronto!</h3>
@@ -159,7 +124,7 @@ function quitarCarrito(carrito) {
     cuotas();
     finalizarCompra();
     if (carritoArray.length === 0) {
-        ordenDeCompra.innerHTML = ""; 
+        ordenDeCompra.innerHTML = "";
     }
 }
 
@@ -172,7 +137,7 @@ function finalizarCompra() {
             existingButton.remove();
         }
 
-        ordenDeCompra.innerHTML = ""; 
+        ordenDeCompra.innerHTML = "";
     } else {
         if (existingButton) {
             existingButton.remove();
@@ -183,7 +148,7 @@ function finalizarCompra() {
         button.innerText = `Formas de pago`;
         button.addEventListener("click", () => {
             pagoFinal.classList.remove("visto");
-            cuotas();  
+            cuotas();
         });
 
         final.append(button);
@@ -192,80 +157,11 @@ function finalizarCompra() {
 
 function cuotas() {
     if (carritoArray.length === 0) {
-        resumen.classList.add("visto"); 
+        resumen.classList.add("visto");
     } else {
-        resumen.classList.remove("visto"); 
+        resumen.classList.remove("visto");
     }
 }
-
-
-// cuotaUno.addEventListener("click", function () {
-//     valorCuota = totalFinal / 1;
-//     Swal.fire({
-//         title: "¿Desea finalizar la compra?",
-//         text: `El total es de $${totalFinal}`,
-//         icon: "question",
-//         showCancelButton: true,
-//         confirmButtonColor: "#b8c394",
-//         cancelButtonColor: "#6b1c27",
-//         confirmButtonText: "Continuar",
-//         color: "#1f7387",
-//         allowOutsideClick: "true",
-//         background: "#ececece0",
-//         iconColor: "#871f47",
-//     }).then((result) => {
-//         if (result.isConfirmed) {
-//             let cupon = document.createElement("div");
-//             cupon.classList.add("orden");
-//             cupon.innerHTML = 
-//                 `<i class="bi bi-ticket-perforated-fill"></i> 
-//                 <h2>Su cupón de compra es el ${orden}</h2>
-//                 <h3>Gracias por utilizar WeGift, ¡lo esperamos pronto!</h3>
-//                 <i class="bi bi-suit-heart-fill"></i>`;
-//             ordenDeCompra.append(cupon);
-//             pagoFinal.classList.add("visto");
-//             carrito.classList.add("visto");
-
-//             let nuevoCarrito = document.createElement("button");
-//             nuevoCarrito.classList.add("nuevaCompra");
-//             nuevoCarrito.innerText = "¡Desea realizar una nueva compra?";
-//             boton.addEventListener("click", () => {
-//                 carritoArray = []; 
-//                 verCarrito(); 
-//                 cuotas(); 
-//                 finalizarCompra(); 
-//                 localStorage.setItem("experiencias", JSON.stringify(carritoArray)); 
-//                 ordenDeCompra.innerHTML = ""; 
-//             });
-//             ordenDeCompra.append(nuevoCarrito);
-
-//             Swal.fire({
-//                 title: "Pago Realizado!",
-//                 text: `Usted realizó el pago en 1 cuota de: $${valorCuota.toFixed(2)}`,
-//                 iconHtml: '<i class="bi-check"></i>',
-//                 confirmButtonText: "Continuar",
-//                 color: "#1f7387",
-//                 allowOutsideClick: "true",
-//                 background: "#ececece0",
-//                 iconColor: "#871f47",
-//                 confirmButtonColor: "#b8c394"
-//             });
-//             Toastify({
-//                 text: "Se ha generado un nuevo cupón",
-//                 duration: 1500,
-//                 close: true,
-//                 gravity: "top",
-//                 position: "right",
-//                 stopOnFocus: true,
-//                 style: {
-//                     background: "linear-gradient(to right, #871f47, #be4b77)",
-//                 },
-//             }).showToast();
-
-//             ordenDeCompra.classList.remove("visto");
-//         }
-//     });
-// });
 
 cuotaUno.addEventListener("click", function () {
     valorCuota = totalFinal / 1;
@@ -285,7 +181,7 @@ cuotaUno.addEventListener("click", function () {
         if (result.isConfirmed) {
             let cupon = document.createElement("div");
             cupon.classList.add("orden");
-            cupon.innerHTML = 
+            cupon.innerHTML =
                 `<i class="bi bi-ticket-perforated-fill"></i> 
                 <h2>Su cupón de compra es el ${orden}</h2>
                 <h3>Gracias por utilizar WeGift, ¡lo esperamos pronto!</h3>
@@ -297,16 +193,16 @@ cuotaUno.addEventListener("click", function () {
             nuevoCarrito.classList.add("nuevaCompra");
             nuevoCarrito.innerText = "¡Desea realizar una nueva compra?";
             nuevoCarrito.addEventListener("click", () => {
-                carritoArray = []; 
-                verCarrito(); 
+                carritoArray = [];
+                verCarrito();
                 cuotas();
-                finalizarCompra(); 
-                localStorage.setItem("experiencias", JSON.stringify(carritoArray)); 
-                ordenDeCompra.innerHTML = ""; 
+                finalizarCompra();
+                localStorage.setItem("experiencias", JSON.stringify(carritoArray));
+                ordenDeCompra.innerHTML = "";
             });
-            
-           
-            ordenDeCompra.append(nuevoCarrito); 
+
+
+            ordenDeCompra.append(nuevoCarrito);
 
             Swal.fire({
                 title: "Pago Realizado!",
@@ -354,7 +250,7 @@ cuotaTres.addEventListener("click", function () {
         if (result.isConfirmed) {
             let cupon = document.createElement("div");
             cupon.classList.add("orden");
-            cupon.innerHTML = 
+            cupon.innerHTML =
                 `<i class="bi bi-ticket-perforated-fill"></i> 
                 <h2>Su cupón de compra es el ${orden}</h2>
                 <h3>Gracias por utilizar WeGift, ¡lo esperamos pronto!</h3>
@@ -366,14 +262,14 @@ cuotaTres.addEventListener("click", function () {
             nuevoCarrito.classList.add("nuevaCompra");
             nuevoCarrito.innerText = "¡Desea realizar una nueva compra?";
             nuevoCarrito.addEventListener("click", () => {
-                carritoArray = []; 
-                verCarrito(); 
+                carritoArray = [];
+                verCarrito();
                 cuotas();
-                finalizarCompra(); 
-                localStorage.setItem("experiencias", JSON.stringify(carritoArray)); 
-                ordenDeCompra.innerHTML = ""; 
-            });                     
-            ordenDeCompra.append(nuevoCarrito); 
+                finalizarCompra();
+                localStorage.setItem("experiencias", JSON.stringify(carritoArray));
+                ordenDeCompra.innerHTML = "";
+            });
+            ordenDeCompra.append(nuevoCarrito);
             Swal.fire({
                 title: "Pago Realizado!",
                 text: `Usted realizó el pago en 3 cuotas de: $${valorCuota.toFixed(2)}`,
@@ -421,8 +317,8 @@ cuotaSeis.addEventListener("click", function () {
         if (result.isConfirmed) {
             let cupon = document.createElement("div");
             cupon.classList.add("orden");
-            cupon.innerHTML = 
-            
+            cupon.innerHTML =
+
                 `<i class="bi bi-ticket-perforated-fill"></i> 
                 <h2>Su cupón de compra es el ${orden}</h2>
                 <h3>Gracias por utilizar WeGift, ¡lo esperamos pronto!</h3>
@@ -434,14 +330,14 @@ cuotaSeis.addEventListener("click", function () {
             nuevoCarrito.classList.add("nuevaCompra");
             nuevoCarrito.innerText = "¡Desea realizar una nueva compra?";
             nuevoCarrito.addEventListener("click", () => {
-                carritoArray = []; 
-                verCarrito(); 
+                carritoArray = [];
+                verCarrito();
                 cuotas();
-                finalizarCompra(); 
-                localStorage.setItem("experiencias", JSON.stringify(carritoArray)); 
-                ordenDeCompra.innerHTML = ""; 
+                finalizarCompra();
+                localStorage.setItem("experiencias", JSON.stringify(carritoArray));
+                ordenDeCompra.innerHTML = "";
             });
-            ordenDeCompra.append(nuevoCarrito); 
+            ordenDeCompra.append(nuevoCarrito);
 
             Swal.fire({
                 title: "Pago Realizado!",
@@ -489,7 +385,7 @@ cuotaDebito.addEventListener("click", function () {
         if (result.isConfirmed) {
             let cupon = document.createElement("div");
             cupon.classList.add("orden");
-            cupon.innerHTML = 
+            cupon.innerHTML =
                 `<i class="bi bi-ticket-perforated-fill"></i> 
                 <h2>Su cupón de compra es el ${orden}</h2>
                 <h3>Gracias por utilizar WeGift, ¡lo esperamos pronto!</h3>
@@ -501,14 +397,14 @@ cuotaDebito.addEventListener("click", function () {
             nuevoCarrito.classList.add("nuevaCompra");
             nuevoCarrito.innerText = "¡Desea realizar una nueva compra?";
             nuevoCarrito.addEventListener("click", () => {
-                carritoArray = []; 
-                verCarrito(); 
+                carritoArray = [];
+                verCarrito();
                 cuotas();
-                finalizarCompra(); 
-                localStorage.setItem("experiencias", JSON.stringify(carritoArray)); 
-                ordenDeCompra.innerHTML = ""; 
+                finalizarCompra();
+                localStorage.setItem("experiencias", JSON.stringify(carritoArray));
+                ordenDeCompra.innerHTML = "";
             });
-            ordenDeCompra.append(nuevoCarrito); 
+            ordenDeCompra.append(nuevoCarrito);
             Swal.fire({
                 title: "Pago Realizado!",
                 text: `Usted realizó el pago con debito el valor total es de $${valorCuota.toFixed(2)}`,

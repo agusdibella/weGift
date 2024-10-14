@@ -1,0 +1,38 @@
+[
+    {
+        "nombre": "Cena en Rooftop en Pto Madero",
+        "valor": 40000,
+        "descripcion": "La opción perfecta para cortar la semana. Mediodías y noches con sabores que son una obra de arte",
+        "direccion": "Av. Elvira Rawson de Dellepiane 150",
+        "telefono": "11 5579-9007",
+        "imagen": "./img/rooftop.jpg",
+        "cantidadPersona": 1
+    },
+    {
+        "nombre": "Merienda en Palacio Duhau de 15hs a 18hs",
+        "valor": "15000",
+        "descripcion": "Exploren nuevos y audaces sabores de la mano del talentoso equipo de pastelería del Palacio.",
+        "direccion": "Av. Alvear 1661",
+        "telefono": "11 5171-1234",
+        "imagen": "./img/duhau.jpg",
+        "cantidadPersona": 1
+    },
+    {
+        "nombre": "Almuerzo dentro del Hotel Hilton en el Faro Restaurant",
+        "valor": 30000,
+        "descripcion": "Platitos al centro de temporada para compartir bajo la propuesta del chef Maxi Rossi.",
+        "direccion": "Blvd. Macacha Guemes 351",
+        "telefono": " 11 4891-0000",
+        "imagen": "./img/hilton.jpg",
+        "cantidadPersona": 1
+    },
+    {
+        "nombre": "Cena en The Nook",
+        "valor": 18000,
+        "direccion": "Av. Corrientes 802",
+        "descripcion": "Un resto-bar bohemio y chic, con una fusión de comida casera y clásicos del fast food.",
+        "telefono": " 11 5946-7865",
+        "imagen": "./img/thenox.jpg",
+        "cantidadPersona": 1
+    }
+]
