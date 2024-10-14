@@ -1,8 +1,8 @@
 let carritoArray = JSON.parse(localStorage.getItem("experiencias")) || [];
 
-fetch("../js/experiencia.json")
-    .then(response => response.json())
-    .then(regalos => {
+fetch("./experiencia.json")
+    .then((response) => response.json())
+    .then((regalos) => {
         regalos.forEach((experiencia) => {
             let div = document.createElement("div");
             div.classList.add("regalos");
