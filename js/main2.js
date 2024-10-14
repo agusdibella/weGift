@@ -1,6 +1,6 @@
 let carritoArray = JSON.parse(localStorage.getItem("experiencias")) || [];
 
-fetch("../js/exp.json")
+fetch("../js/experiencia.json")
     .then(response => response.json())
     .then(regalos => {
         regalos.forEach((experiencia) => {
@@ -191,7 +191,7 @@ cuotaUno.addEventListener("click", function () {
 
             let nuevoCarrito = document.createElement("button");
             nuevoCarrito.classList.add("nuevaCompra");
-            nuevoCarrito.innerText = "¡Desea realizar una nueva compra?";
+            nuevoCarrito.innerText = "¿Desea realizar una nueva compra?";
             nuevoCarrito.addEventListener("click", () => {
                 carritoArray = [];
                 verCarrito();
@@ -260,7 +260,7 @@ cuotaTres.addEventListener("click", function () {
 
             let nuevoCarrito = document.createElement("button");
             nuevoCarrito.classList.add("nuevaCompra");
-            nuevoCarrito.innerText = "¡Desea realizar una nueva compra?";
+            nuevoCarrito.innerText = "¿Desea realizar una nueva compra?";
             nuevoCarrito.addEventListener("click", () => {
                 carritoArray = [];
                 verCarrito();
@@ -328,7 +328,7 @@ cuotaSeis.addEventListener("click", function () {
 
             let nuevoCarrito = document.createElement("button");
             nuevoCarrito.classList.add("nuevaCompra");
-            nuevoCarrito.innerText = "¡Desea realizar una nueva compra?";
+            nuevoCarrito.innerText = "¿Desea realizar una nueva compra?";
             nuevoCarrito.addEventListener("click", () => {
                 carritoArray = [];
                 verCarrito();
@@ -395,7 +395,7 @@ cuotaDebito.addEventListener("click", function () {
 
             let nuevoCarrito = document.createElement("button");
             nuevoCarrito.classList.add("nuevaCompra");
-            nuevoCarrito.innerText = "¡Desea realizar una nueva compra?";
+            nuevoCarrito.innerText = "¿Desea realizar una nueva compra?";
             nuevoCarrito.addEventListener("click", () => {
                 carritoArray = [];
                 verCarrito();
