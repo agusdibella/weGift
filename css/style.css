@@ -315,7 +315,6 @@ transition: background-color 0.5s ease, color 0.5s ease
 }
 
 .ordenDeCompra {
-    display: flex;
     justify-content: center; 
     align-items: center;    
     margin: 0;
@@ -328,16 +327,10 @@ transition: background-color 0.5s ease, color 0.5s ease
     display: inline-block;
 }
 
-.orden{
-    border-radius: 5px;
-    border-color: #1f7387;
-    border-style: solid;
-}
-
 .orden h2{
-    color: #1e5968;
+    color: #eb508b;
     padding-bottom: 5px;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .orden h3{
@@ -352,3 +345,56 @@ transition: background-color 0.5s ease, color 0.5s ease
     color: #d4769a;
 }
 
+.vaciar{
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 15px;
+    font-weight: 800;
+    background-color: #871f47;
+    color: #f7eae8;
+    border: none;
+}
+
+.vaciar:hover{
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 15px;
+    font-weight: 800;
+    background-color: #ceb0ab;
+    color: #f7eae8;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    border: none;
+}
+
+.nuevaCompra{
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 15px;
+    font-weight: 800;
+    background-color: #871f47;
+    color: #f7eae8;
+    border: none;
+}
+
+.nuevaCompra:hover{
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 15px;
+    font-weight: 800;
+    background-color: #ceb0ab;
+    color: #f7eae8;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    border: none;
+}
